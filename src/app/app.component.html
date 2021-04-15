@@ -1,48 +1,61 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand">Sacchon</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-              <a class="nav-link"[routerLink]="['homepage']" >Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Company</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Contact us</a>
-          </li>
-      </ul>
-      <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['MyAccount']" > Login </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" [routerLink]="['Registration']" >Register</a>
-          </li>
-      </ul>
-  </div>
-</nav>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- <hr> -->
+
+
+<router-outlet></router-outlet>
+
+
+
+
+<footer id="footer">
+
+ 
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Sacchon<span>.</span></h3>
+          <p>
+            Thessaloniki <br>
+            57013<br>
+            Greece <br><br>
+            <strong>Phone:</strong> +0030 2310 695880<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Company</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Contact us</a></li>
+           
+          </ul>
+        </div>
+
         
-      
 
-  
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Social Networks</h4>
+          <p>You can find us also here:</p>
+          <div class="social-links mt-3">
+            
+            <a href="https://www.facebook.com" class="fa fa-facebook"><i class="bx bxl-facebook" > </i></a>
+            <a href="https://www.youtube.com" class="fa fa-youtube"><i class="bx bxl-youtube"></i></a>           
+            <a href="https://www.linkedin.com" class="fa fa-linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
 
-  <hr>
-  <div class="container-fluid">
-    
-    <router-outlet></router-outlet>
-  
+      </div>
+    </div>
   </div>
 
-  <footer class="page-footer font-small blue fixed-bottom">
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2021 Copyright:
-      <a > Team7</a>
-    </div>
-    <!-- Copyright -->
   
-  </footer>
+</footer>
