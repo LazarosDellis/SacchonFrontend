@@ -4,6 +4,6 @@ export interface AccountInfo {
     username:string;
     emailAddress:string;
     password:string;
-    repeatPassword:string;
+   // repeatPassword:string;
 
 }

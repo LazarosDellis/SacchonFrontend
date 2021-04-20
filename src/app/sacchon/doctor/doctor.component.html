@@ -43,45 +43,21 @@
   </table>
 
 
+  <button *ngIf="!insertInfo" type="button" class="btn btn-primary"  (click)="insertData()">+</button>
+  <button *ngIf="insertInfo" type="button" class="btn btn-primary"  (click)="insertData()">-</button>
 
 
 
 
-
-
-  <button *ngIf="!insertInfo" type="button" class="btn btn-primary" id="insert" (click)="insertData()">+</button>
-  <button *ngIf="insertInfo" type="button" class="btn btn-primary"  id="insert" (click)="insertData()"><i class="fa fa-close"></i>Close</button>
-
-
-
-
-<form [formGroup]="patientform" *ngIf="insertInfo" >
+<form [formGroup]="doctorform" *ngIf="insertInfo" >
 
     
-    
-    
     <div class="form-group mr-2">
-        <h3>Measurement</h3>
-        <input class="form-control" type="text" id="glycoseMeasurement" formControlName="glycoseMeasurement">
-
-
+        <h3>Consultation</h3>
+        <input class="form-control" type="text" id="date" formControlName="Consultation">
     </div>
 
-    <div class="form-group mr-2">
-        <h3>CarbsMeasurement</h3>
-        <input class="form-control" type="text" id="CarbsMeasurement" formControlName="carbsMeasurement">
-
-
-    </div>
-
-    <div class="form-group mr-2">
-        <h3>Date</h3>
-        <input class="form-control" type="text" id="date" formControlName="date">
-    </div>
-
-    <button type="button" class="btn btn-primary" (click)="submitPatientData()">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="sumbitConsultation()">Submit</button>
    
 
 </form>
-
-

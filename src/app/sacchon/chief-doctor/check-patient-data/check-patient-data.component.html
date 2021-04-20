@@ -1,0 +1,70 @@
+<div class="container">
+
+
+
+    <form [formGroup]="displayDataOfPatientForm">
+        <div class="form-group input-group">
+            <label >Insert id of patient:</label>
+            <input formControlName="id"  name="" placeholder="Id of patient" type="text" #idPatient><br><br>
+        </div>
+
+
+        <div class="form-group input-group">
+            <label for="start">From:</label>
+            <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01" max="2025-12-31" #fromDate>
+
+            <label for="start">To:</label>
+            <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2085-12-31" #toDate>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" (click)="searchPatientData(idPatient, fromDate, toDate)">Check</button>
+    </form>
+
+    
+
+    <h4>More details</h4>
+    <table class="table table-bordered">   
+    
+      <thead>
+        <th>Id</th>
+        <th>Type of measurements</th>
+        <th>Measurement</th>
+        <th>Units of measurement</th>        
+        <th>Date</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let measurement of measurements" >
+    
+        <td>{{measurement.id}}</td>        
+        <td>{{measurement.typeOfMeasurement}}</td>
+        <td>{{measurement.valueOfMeasurement}}</td>
+        <td *ngIf="measurement.typeOfMeasurement == 'carbs' ">gram</td>
+        <td *ngIf="measurement.typeOfMeasurement != 'carbs' ">mg/dL</td>
+        <td>{{measurement.date | date:"dd/MM/yyyy"}}</td>
+        
+        
+        
+        
+      </tr> 
+    
+    </tbody>
+    
+    </table> 
+
+    
+    <!-- {{measurements | json}} -->
+    
+    
+    
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+
