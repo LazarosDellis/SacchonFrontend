@@ -9,12 +9,17 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ChiefDoctorComponent } from './chief-doctor/chief-doctor.component';
 import { CheckPatientDataComponent } from './chief-doctor/check-patient-data/check-patient-data.component';
+import { CheckDoctorDataComponent } from './chief-doctor/check-doctor-data/check-doctor-data.component';
+import { PostPutConsultComponent } from './doctor/post-put-consult/post-put-consult.component';
+
 
 
 
 
 @NgModule({
-  declarations: [PatientComponent, MyAccountComponent, RegistrationFormComponent, HomePageComponent, DoctorComponent, ChiefDoctorComponent, CheckPatientDataComponent],
+  declarations: [PatientComponent, MyAccountComponent, RegistrationFormComponent, 
+                 HomePageComponent, DoctorComponent, ChiefDoctorComponent, CheckPatientDataComponent, 
+                 CheckDoctorDataComponent, PostPutConsultComponent],
   imports: [
     CommonModule,
     FormsModule,

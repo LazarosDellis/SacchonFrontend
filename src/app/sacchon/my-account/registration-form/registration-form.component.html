@@ -9,10 +9,6 @@
 <div class="container">
 
 
-
-
-
-
     <div class="card">
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
@@ -30,7 +26,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="" class="form-control" formControlName="fullname" placeholder="Full name" type="text">
+                    <input name="" class="form-control" formControlName="fullname"  placeholder="e.g. John Doe" type="text">
                     <div class="text-danger"
                         *ngIf="registrationForm.get('fullname').hasError('required') && registrationForm.get('fullname').touched">
                         Fullname required</div>
@@ -40,7 +36,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="" class="form-control" formControlName="username" placeholder="Username" type="text">
+                    <input name="" class="form-control" formControlName="username" placeholder="e.g. johny" type="text">
                 </div>
                 <div class="text-danger"
                     *ngIf="registrationForm.get('username').hasError('required') && registrationForm.get('username').touched">
@@ -49,7 +45,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="" class="form-control" formControlName="emailAddress" placeholder="Email address"
+                    <input name="" class="form-control" formControlName="emailAddress" placeholder="e.g. john@doe.com"
                         type="email">
                 </div>
                 <div class="text-danger"
@@ -59,7 +55,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" formControlName="password" placeholder="Create password"
+                    <input class="form-control" formControlName="password" placeholder="e.g. **** :)"
                         type="password">
                 </div>
                 <div class="text-danger"
@@ -72,6 +68,18 @@
                     <input class="form-control" formControlName="repeatPassword" placeholder="Repeat password"
                         type="password">
                 </div>
+
+
+                <div class="form-group input-group">
+                    <label class="label">Role</label>
+                    <select formControlName="role" class="form-control" id="statusInput">
+                        <option>User</option>
+                        <option>Doctor</option>
+                        <option>ChiefDoctor</option>
+                    </select>
+            
+                </div>
+
                 <div class="text-danger"
                     *ngIf="registrationForm.get('repeatPassword').hasError('required') && registrationForm.get('repeatPassword').touched">
                     The same password is required</div> <!-- form-group// -->

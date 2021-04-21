@@ -31,11 +31,11 @@ export class CheckPatientDataComponent implements OnInit {
 
 
   searchPatientData(idPatient,  fromDate, toDate){
-   // alert(toDate.value)
+   
     this.chiefDoctorService.getMeasurementsOfAPatient(idPatient.value ,fromDate.value, toDate.value).subscribe(result => 
       {
         this.measurements = result.data
-        console.log(this.measurements)
+        //console.log(this.measurements)
       })
     
   }

@@ -1,63 +1,128 @@
+<div class="row">
+  <div class="column">
+    <h4>Personal details</h4>
+    <table class="table ">
 
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Date</th>
-        <th scope="col">Glucose Measurement</th>
-        <th scope="col">Carbs Measurement</th>
-        <th scope="col">Consultations</th>
+      <thead>
+        <th>Id</th>
+        <th>Fullname</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email Address</th>
+        <th>DoctorId</th>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let data of person">
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>GGGG</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>@mdo</td>
-      </tr>
-    </tbody>
-  </table>
+          <td>{{data.id}}</td>
+          <td>{{data.fullName}}</td>
+          <td>{{data.userName}}</td>
+          <td>{{data.password}}</td>
+          <td>{{data.email}}</td>
+          
+
+        </tr> -->
+
+      </tbody>
+
+    </table>
+  </div>
 
 
-  <button *ngIf="!insertInfo" type="button" class="btn btn-primary"  (click)="insertData()">+</button>
-  <button *ngIf="insertInfo" type="button" class="btn btn-primary"  (click)="insertData()">-</button>
-
-
-
-
-<form [formGroup]="doctorform" *ngIf="insertInfo" >
-
-    
-    <div class="form-group mr-2">
-        <h3>Consultation</h3>
-        <input class="form-control" type="text" id="date" formControlName="Consultation">
+  <form [formGroup]= "displayDataOfAPatientForm">
+    <div class="form-group input-group">
+      <label>Insert id of patient:</label>
+      <input formControlName="id" name="" placeholder="Id of patient" type="text" #idPatient><br><br>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="sumbitConsultation()">Submit</button>
-   
+    <button type="submit" class="btn btn-primary" (click)="searchMeasurementData(idPatient.value)">Check
+      Measurements</button>
+    <button type="submit" class="btn btn-primary" (click)="searchConsultationData(idPatient.value)">Check
+      Consultations</button>
+  </form>
 
-</form>
+  <div class="row">
+    <div class="column">
+      <table class="table">
+
+        <thead>
+          <th>Id</th>
+          <th>Type of measurements</th>
+          <th>Measurement</th>
+          <th>Units of measurement</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let measurement of measurementsOfAPatient">
+
+            <td>{{measurement.id}}</td>
+            <td>{{measurement.typeOfMeasurement}}</td>
+            <td>{{measurement.valueOfMeasurement}}</td>
+            <td *ngIf="measurement.typeOfMeasurement == 'carbs' ">gram</td>
+            <td *ngIf="measurement.typeOfMeasurement != 'carbs' ">mg/dL</td>
+            <td>{{measurement.date | date:"dd/MM/yyyy"}}</td>
+
+
+
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+    <div class="column">
+      <table class="table">
+
+        <thead>
+          <th>Id</th>
+          <th>Consultation</th>
+          <th>Date</th>
+
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let consults of consultationsOfAPatient">
+
+            <td>{{consults.id}}</td>
+            <td>{{consults.consult}}</td>
+            <td>{{consults.date | date:"dd/MM/yyyy"}}</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+<br>
+  <h3>Patients with no consultation over the last 30 days</h3>
+  <button class="btn btn-primary" (click)="seePatientsNoConsult30()">Check patients for the last 30 days</button>
+  <table class="table">   
+      
+      <thead>
+        <th>Id</th>
+        <th>Fullname</th>
+        <th>Email</th>   
+        
+      </thead>
+      <tbody>
+      <tr *ngFor="let patient of patients" >
+        
+        <td>{{patient.id}}</td>        
+        <td>{{patient.fullName}}</td>
+        <td>{{patient.email}}</td>
+        <td><button class="btn btn-primary" (click)="createNewConsult()">Create new consultation</button></td>
+        
+        
+        
+        
+        
+      </tr> 
+    
+    </tbody>
+    
+    </table> 
+  
+
+

@@ -1,3 +1,4 @@
+import { CheckDoctorDataComponent } from './sacchon/chief-doctor/check-doctor-data/check-doctor-data.component';
 import { CommonModule } from '@angular/common';
 import { CheckPatientDataComponent } from './sacchon/chief-doctor/check-patient-data/check-patient-data.component';
 import { DoctorComponent } from './sacchon/doctor/doctor.component';
@@ -11,9 +12,11 @@ import { MyAccountComponent } from './sacchon/my-account/my-account.component';
 import { RegistrationFormComponent } from './sacchon/my-account/registration-form/registration-form.component';
 import { PatientComponent } from './sacchon/patient/patient.component';
 import { SacchonModule } from './sacchon/sacchon.module';
+import { PostPutConsultComponent } from './sacchon/doctor/post-put-consult/post-put-consult.component';
+
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', redirectTo:'homepage', pathMatch: 'full'},
   { path: 'patient', component: PatientComponent },
   { path: 'doctor', component: DoctorComponent },
   { path: 'chiefDoctor', component: ChiefDoctorComponent },
@@ -21,7 +24,12 @@ const routes: Routes = [
   { path: 'Registration', component: RegistrationFormComponent },
   { path: 'homepage', component: HomePageComponent },
   {path: 'contactUs', component: ContactUsComponent},
-  { path: 'checkDataPatient', component: CheckPatientDataComponent }
+  { path: 'checkDataPatient', component: CheckPatientDataComponent },
+  {path: 'checkDataDoctor', component: CheckDoctorDataComponent},
+  {path: 'createUpdateConsult', component: PostPutConsultComponent},
+  {path: 'login', component: MyAccountComponent }
+  
+  
   
 ];
 

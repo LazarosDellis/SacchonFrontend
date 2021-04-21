@@ -16,7 +16,8 @@
         <li><a class="nav-link scrollto" [routerLink]="['']">Company</a></li>
         <li><a class="nav-link scrollto" [routerLink]="['contactUs']">Contact us</a></li>
         <li><a class="nav-link scrollto " [routerLink]="['MyAccount']">Login</a></li>
-        <li><a class="nav-link scrollto" [routerLink]="['Registration']">Register</a></li>
+        <li  *ngIf="isLogged" ><a class="nav-link scrollto" [routerLink]="['Registration']" >Register</a></li>
+        <li *ngIf="isLogged"><a class="nav-link scrollto" [routerLink]="['Registration']" (click)="logOut()" >LogOut</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

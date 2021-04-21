@@ -1,0 +1,68 @@
+<div class="container">
+
+
+
+    <form [formGroup]="displayDataOfDoctorForm">
+        <div class="form-group input-group">
+            <label >Insert id of doctor:</label>
+            <input formControlName="id"  name="" placeholder="Id of patient" type="text" #idDoctor><br><br>
+        </div>
+
+
+        <div class="form-group input-group">
+            <label for="start">From:</label>
+            <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01" max="2025-12-31" #fromDate>
+
+            <label for="start">To:</label>
+            <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2085-12-31" #toDate>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" (click)="searchDoctorData(idDoctor, fromDate, toDate)">Check</button>
+    </form>
+
+    
+
+    <h4>More details</h4>
+    <table class="table table-bordered">   
+    
+      <thead>
+        <th>Id</th>
+        <th>Consultations</th>
+        <th>Patient's id</th>   
+        <th>Date</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let consultation of consultations" >
+    
+        <td>{{consultation.id}}</td>        
+        <td>{{consultation.consult}}</td>
+        <td>{{consultation.patientId}}</td>
+        <td>{{consultation.date | date:"dd/MM/yyyy" }}</td>
+      
+        
+        
+        
+        
+      </tr> 
+    
+    </tbody>
+    
+    </table> 
+
+    
+    <!-- {{measurements | json}} -->
+    
+    
+    
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+

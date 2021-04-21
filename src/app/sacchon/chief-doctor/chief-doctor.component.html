@@ -1,82 +1,176 @@
+<label>See patients with no consultation over the past month</label>
+<button class="btn btn-primary" [routerLink]="['/patientsNoConsult30']">See patients waiting for consultation</button>
+<br>
 
 
 
-<!-- [routerLink]="['/checkDataPatient']" -->
+<div class="row">
+  <div class="column">
+    <h4>PATIENTS</h4>
+    <table class="table ">
+
+      <thead>
+        <th>Id</th>
+        <th>Patient's FullName</th>
+        <th>Email Address</th>
+        <th>DoctorId</th>
+        <th>More Info</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of patients">
+
+          <td>{{data.id}}</td>
+          <td>{{data.fullName}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.doctorId}}</td>
+
+          <td><button class="btn btn-primary" [routerLink]="['/checkDataPatient']">More Patient's Info</button></td>
 
 
 
-<!-- <button class="btn btn-primary"  [routerLink]="['/checkDataPatient']">Check A single Patient</button> -->
-<h4>PATIENTS</h4>
-<table class="table table-bordered">   
+        </tr>
 
-  <thead>
-    <th>Id</th>
-    <th>Patient's FullName</th>
-    <th>Email Address</th>
-    <th>DoctorId</th>
-    <th>More Info</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of patients" >
+      </tbody>
 
-    <td>{{data.id}}</td>
-    <td>{{data.fullName}}</td>
-    <td>{{data.email}}</td>
-    <td>{{data.doctorId}}</td>
-    
-    <td><button class="btn btn-primary"  [routerLink]="['/checkDataPatient']">More Patient's Info</button></td>
-    
-    
-    
-  </tr> 
-
-</tbody>
-
-</table>
+    </table>
+  </div>
 
 
 
-<!-- <button class="btn btn-primary"  [routerLink]="['/checkDoctorConsultations']">Check a single Doctor</button> -->
-<h4>DOCTORS</h4>
-<table class="table table-bordered">   
-  
-  <thead>
-    <th>Id</th>
-    <th>Doctor's Fullname</th>
-    <th>Email Adress</th>
-    <th>More Info</th>
-    
-  </thead>
-  <tbody>
-  <tr *ngFor="let doctor of doctors" >
+  <div class="column">
+    <h4>DOCTORS</h4>
+    <table class="table">
 
-    <td>{{doctor.id}}</td>
-    <td>{{doctor.fullName}}</td>
-    <td>{{doctor.email}}</td>    
-    <td><button (click)="checkConsultationsOfADoctor(data.id)">More Doctor's Info</button></td>
-    
-  </tr> 
+      <thead>
+        <th>Id</th>
+        <th>Doctor's Fullname</th>
+        <th>Email Adress</th>
+        <th>More Info</th>
 
-</tbody>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doctor of doctors">
 
-</table>
+          <td>{{doctor.id}}</td>
+          <td>{{doctor.fullName}}</td>
+          <td>{{doctor.email}}</td>
+          <td><button class="btn btn-primary" [routerLink]="['/checkDataDoctor']">More Doctor's Info</button></td>
 
+        </tr>
 
+      </tbody>
 
-
+    </table>
+  </div>
+</div>
 
 
+<!-- 4. Chiefdoctor [routerLink]="['/patientsNoConsult30']"-->
+<form [formGroup]="patientsWithNoActivityForm">
+
+
+  <div class="form-group input-group">
+    <label for="start">From:</label>
+    <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01"
+      max="2025-12-31" #fromDate>
+
+    <label for="start">To:</label>
+    <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+      max="2085-12-31" #toDate>
+  </div>
+
+  <button class="btn btn-primary" type="submit" (click)="patientsWithNoActivity(fromDate, toDate)">See patients with no
+    activity</button>
+
+</form>
+
+<div *ngIf="patientsWithNoActivityForm.valid">
+<div class="row">
+  <div class="column">
+    <h4>No activity Patients</h4>
+    <table class="table ">
+
+      <thead>
+        <th>Id</th>
+        <th>Patient's FullName</th>
+        <th>Email Address</th>
+        <th>DoctorId</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patientsNoActivity">
+
+          <td>{{patient.id}}</td>
+          <td>{{patient.fullName}}</td>
+          <td>{{patient.email}}</td>
+          <td>{{patient.doctorId}}</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+</div>
+
+
+<!-- 5.ChiefDoctor -->
+<!-- <label>See doctors with no activity</label>
+<button class="btn btn-primary" >See doctors with no activity</button> -->
+
+
+
+<form [formGroup]="doctorsWithNoActivityForm">
+
+
+  <div class="form-group input-group">
+    <label for="start">From:</label>
+    <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01"
+      max="2025-12-31" #fromDate>
+
+    <label for="start">To:</label>
+    <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+      max="2085-12-31" #toDate>
+  </div>
+
+  <button class="btn btn-primary" type="submit" (click)="doctorsWithNoActivity(fromDate, toDate)">See doctors with no
+    activity</button>
+
+</form>
+
+<div *ngIf="doctorsWithNoActivityForm.valid">
+<div class="row">
+  <div class="column">
+    <h4>No activity Doctors</h4>
+    <table class="table ">
+
+      <thead>
+        <th>Id</th>
+        <th>Doctor's FullName</th>
+        <th>Email Address</th>
+       
+      </thead>
+      <tbody>
+        <tr *ngFor="let doctor of doctorsNoActivity">
+
+          <td>{{doctor.id}}</td>
+          <td>{{doctor.fullName}}</td>
+          <td>{{doctor.email}}</td>
+          <td>{{doctor.doctorId}}</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+</div>
 
 
 
 
 
-
-
-
-
-
-<!-- <button class="btn btn-primary" (click)="seeAllDoctors()">Doctors</button> -->
 
 
 
@@ -93,5 +187,3 @@
 
 
 <!-- <button class="btn btn-primary" (click)="seeConsultationsOfAPatient()"> </button>   -->
-
-
