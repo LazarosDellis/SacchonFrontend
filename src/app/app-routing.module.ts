@@ -18,8 +18,11 @@ import { PostPutConsultComponent } from './sacchon/doctor/post-put-consult/post-
 const routes: Routes = [
   { path: '', redirectTo:'homepage', pathMatch: 'full'},
   { path: 'patient', component: PatientComponent },
+  { path: 'patient/:idPatient', component: PatientComponent },
   { path: 'doctor', component: DoctorComponent },
+  { path: 'doctor/:idDoctor', component: DoctorComponent },
   { path: 'chiefDoctor', component: ChiefDoctorComponent },
+  { path: 'chiefDoctor/:idChiefDoctor', component: ChiefDoctorComponent },
   { path: 'MyAccount', component: MyAccountComponent },
   { path: 'Registration', component: RegistrationFormComponent },
   { path: 'homepage', component: HomePageComponent },
@@ -27,7 +30,8 @@ const routes: Routes = [
   { path: 'checkDataPatient', component: CheckPatientDataComponent },
   {path: 'checkDataDoctor', component: CheckDoctorDataComponent},
   {path: 'createUpdateConsult', component: PostPutConsultComponent},
-  {path: 'login', component: MyAccountComponent }
+  {path: 'login', component: MyAccountComponent },
+  {path: 'createUpdateConsult/:id', component: PostPutConsultComponent}
   
   
   

@@ -1,7 +1,9 @@
+import { UserType } from './../../user-type';
 import { Login } from './../../login';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { ApiResult } from 'src/app/api-result';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +16,20 @@ export class LogInRegisterService {
 
   constructor(private http:HttpClient) { }
 
-  authentication(values: Login){
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  } 
 
-   
 
+  authentication(values: Login): Observable<UserType>{
     
+    return this.http.post<UserType>(' http://localhost:9000/v1/login', JSON.stringify(values), this.httpOptions );
 
-    return this.http.post<Login>(' http://localhost:9000/v1/login',
-     values )
   }
+
+
 
   
 }

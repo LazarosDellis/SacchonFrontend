@@ -1,17 +1,4 @@
-
- <h3>Welcome back</h3>
-
- <form [formGroup]="displayPatientForm">
-  <div class="form-group input-group">
-      <label >Insert id:</label>
-      <input formControlName="id"  name="" placeholder="Id of patient" type="text" #idPatient><br><br>
-  </div>
-
-  <button type="submit" class="btn btn-primary" (click)="searchPatientData(idPatient)">Check</button>
-</form>
-
-
- <div class="row">
+<div class="row">
   <div class="column">
     <h4>Personal details</h4>
     <table class="table ">
@@ -25,98 +12,133 @@
         <th>DoctorId</th>
       </thead>
       <tbody>
-        <tr *ngFor="let data of person">
 
-          <td>{{data.id}}</td>
-          <td>{{data.fullName}}</td>
-          <td>{{data.userName}}</td>
-          <td>{{data.password}}</td>
-          <td>{{data.email}}</td>
-          <td>{{data.doctorId}}</td>
 
-        </tr>
+        <td>{{id}}</td>
+        <td>{{data.fullName}}</td>
+        <td>{{data.userName}}</td>
+        <td>{{data.password}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.doctorId}}</td>
+
+
 
       </tbody>
 
     </table>
+
+
+
   </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- <button *ngIf="!insertInfo" type="button" class="btn btn-primary" id="insert" (click)="insertData()">+</button>
+
+
+  <!-- <button *ngIf="!insertInfo" type="button" class="btn btn-primary" id="insert" (click)="insertData()">+</button>
   <button *ngIf="insertInfo" type="button" class="btn btn-primary"  id="insert" (click)="insertData()"><i class="fa fa-close"></i>Close</button>
+ -->
+
+
+
+  <form [formGroup]="patientform" (ngSubmit)="onSumbit()">
 
 
 
 
-<form [formGroup]="patientform" *ngIf="insertInfo" >
-
-    
-    
-    
     <div class="form-group mr-2">
-        <h3>Measurement</h3>
-        <input class="form-control" type="text" id="glycoseMeasurement" formControlName="glycoseMeasurement">
+      <label class="label">Type of measurement:</label>
+      <select formControlName="typeOfMeasurement" class="form-control" id="reporterInput" placeholder="Select">
+        <option>glucose</option>
+        <option>carbs</option>
+      </select>
 
 
     </div>
 
-    <div class="form-group mr-2">
-        <h3>CarbsMeasurement</h3>
-        <input class="form-control" type="text" id="CarbsMeasurement" formControlName="carbsMeasurement">
-
-
+    <div class="form-group">
+      <label class="label">Value of measurement:</label>
+      <input formControlName="valueOfMeasurement" type="text" class="form-control" id="valueOfMeasurement"
+        placeholder="Enter value">
+      <div *ngIf="patientform.get('valueOfMeasurement').errors?.required && patientform.get('valueOfMeasurement').dirty"
+        class="text-danger">
+        Field is required
+      </div>
     </div>
 
     <div class="form-group mr-2">
-        <h3>Date</h3>
-        <input class="form-control" type="text" id="date" formControlName="date">
+      <h3>Date</h3>
+
+      <input class="form-control" type="text" id="date" formControlName="date" class="form-control" type="text"
+        id="date" formControlName="date" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+        max="2018-12-31">
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="submitPatientData()">Submit</button>
-   
 
-</form>
+    <div class="form-group">
+      <label class="label">Patient Id</label>
+      <input formControlName="patientId" type="text" class="form-control"   id="patientId">
+      <div *ngIf="patientform.get('patientId').errors?.required && patientform.get('patientId').dirty"
+        class="text-danger">
+        Field is required
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary" [disabled]="!patientform.valid">Submit</button>
+  </div>
+
+
+  </form>
+
+
+
+
+
+
+    <form [formGroup]="avgOfMeasurements">
+        <div class="form-group input-group">
+            <label >Insert your id:</label>
+            <input formControlName="id"  name="" placeholder="Your id" type="text" #idPatient><br><br>
+        </div>
+
+
+        <div class="form-group input-group">
+            <label for="start">From:</label>
+            <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01" max="2025-12-31" #fromDate>
+
+            <label for="start">To:</label>
+            <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2085-12-31" #toDate>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" (click)="seeAvg(idPatient.value, fromDate.value, toDate.value)">Check</button>
+    </form>
+
+    
+
+    <h4>More details</h4>
+    <table class="table table-bordered">   
+    
+      <thead>
+        <th>Average of measurements</th>
+        <th>Units of measurement</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let measurement of measurementsAVG">
+    
+       
+        <td>{{avgData.measurement}}</td>
+        <td>Carbs 
+          Glucose
+        </td>
+        
+      
+        
+        
+        
+        
+      </tr> 
+    
+    </tbody>
+    
+    </table> 
 
 

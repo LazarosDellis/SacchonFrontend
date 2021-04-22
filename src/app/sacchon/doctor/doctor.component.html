@@ -29,7 +29,7 @@
   </div>
 
 
-  <form [formGroup]= "displayDataOfAPatientForm">
+  <form [formGroup]="displayDataOfAPatientForm">
     <div class="form-group input-group">
       <label>Insert id of patient:</label>
       <input formControlName="id" name="" placeholder="Id of patient" type="text" #idPatient><br><br>
@@ -79,6 +79,7 @@
           <th>Id</th>
           <th>Consultation</th>
           <th>Date</th>
+          <th>Modify</th>
 
 
         </thead>
@@ -88,6 +89,9 @@
             <td>{{consults.id}}</td>
             <td>{{consults.consult}}</td>
             <td>{{consults.date | date:"dd/MM/yyyy"}}</td>
+            <td> <button class="btn btn-primary" (click)="updateConsultation(consults.id)"> Update </button></td>
+            <td> <button class="btn btn-primary" (click)="deleteConsultation(consults.id)"> Delete </button></td>
+
           </tr>
 
         </tbody>
@@ -95,34 +99,42 @@
       </table>
     </div>
   </div>
-<br>
-  <h3>Patients with no consultation over the last 30 days</h3>
-  <button class="btn btn-primary" (click)="seePatientsNoConsult30()">Check patients for the last 30 days</button>
-  <table class="table">   
-      
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div>
+    <h4>Patients with no consultation over the last 30 days</h4>
+    <button class="btn btn-primary" (click)="seePatientsNoConsult30()">Check patients for the last 30 days</button>
+    <table class="table">
+
       <thead>
         <th>Id</th>
         <th>Fullname</th>
-        <th>Email</th>   
-        
+        <th>Email</th>
+
       </thead>
       <tbody>
-      <tr *ngFor="let patient of patients" >
-        
-        <td>{{patient.id}}</td>        
-        <td>{{patient.fullName}}</td>
-        <td>{{patient.email}}</td>
-        <td><button class="btn btn-primary" (click)="createNewConsult()">Create new consultation</button></td>
-        
-        
-        
-        
-        
-      </tr> 
-    
-    </tbody>
-    
-    </table> 
-  
+        <tr *ngFor="let patient of patients">
+
+          <td>{{patient.id}}</td>
+          <td>{{patient.fullName}}</td>
+          <td>{{patient.email}}</td>
+          <td><button class="btn btn-primary" (click)="createNewConsult()">Create new consultation</button></td>
 
 
+
+
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+
+  </div>

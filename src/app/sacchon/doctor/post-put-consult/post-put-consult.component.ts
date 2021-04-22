@@ -2,7 +2,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Consultations } from 'src/app/consultations';
 import { DoctorService } from '../doctor.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-put-consult',
@@ -11,45 +12,74 @@ import { Router } from '@angular/router';
 })
 export class PostPutConsultComponent implements OnInit {
 
-  createConsultForm:FormGroup
- 
+  createConsultForm: FormGroup
+  consultId: number;
 
-  constructor(private fb:FormBuilder,
+  constructor(private fb: FormBuilder,
     private doctorService: DoctorService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private datePipe: DatePipe) { }
+
+
 
   ngOnInit(): void {
     this.createConsultForm = this.fb.group({
       consult: ["", Validators.required],
-      date:["", Validators.required],
+      date: [""],
       patientId: ["", Validators.required],
-      doctorId:["", Validators.required]
+      doctorId: ["", Validators.required]
+    })
+
+
+    this.route.params.subscribe(p => {
+
+      this.consultId = p.id
+
+      if (this.consultId) {
+        this.getConsultation(this.consultId)
+
+      }
     })
   }
 
+  getConsultation(id: number) {
+    this.doctorService.getConsultationById(id).subscribe(
+      (data) => {
+        this.editConsult(data.data)
+      },
+      (err: any) => console.log(err)
+    );
+  }
 
 
-  onSumbit(){
-    let  newConsult: Consultations = this.createConsultForm.value;
-   
-    // newConsult.doctorId = doctorId;
-    // newConsult.date = date;
-    // newConsult.consult = consult;
-    // newConsult.patientId = patientId;
-    
-    this.doctorService.postConsultation(newConsult).subscribe(result =>
-      {
+  editConsult(data: Consultations) {
+    console.log(data)
+    this.createConsultForm.patchValue({
+      consult: data.consult,
+      date: this.datePipe.transform(data.date, "yyyy-MM-dd"),
+      patientId: data.patientId,
+      doctorId: data.doctorId
+    })
+  }
+
+  onSumbit() {
+    let newConsult: Consultations = this.createConsultForm.value;
+
+    if (this.consultId) {
+      this.doctorService.editConsult(this.consultId, newConsult.doctorId, newConsult).subscribe(result => {
         console.log(result)
-         this.router.navigate(['/doctor'])
+        this.router.navigate(['/doctor'])
       })
+    } else {
+      this.doctorService.postConsultation(newConsult).subscribe(result => {
+        console.log(result)
+        this.router.navigate(['/doctor'])
+      })
+    }
   }
 }
 
 
-// newConsult = {
-//   id:null,
-//    doctorId : null,
-//    date: null,
-//    consult:null,
-//    patientId: null
-//  }
+
+
