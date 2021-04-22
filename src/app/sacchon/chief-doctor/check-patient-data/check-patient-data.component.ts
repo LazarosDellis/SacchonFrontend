@@ -38,6 +38,9 @@ export class CheckPatientDataComponent implements OnInit {
         //console.log(this.measurements)
       })
     
-  }
+  } 
+
+
+  
 
 }

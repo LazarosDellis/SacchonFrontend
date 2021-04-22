@@ -100,8 +100,30 @@
      <section id="consultation" class="tab-panel">
       <h2>View patients with no consultation over the past month &nbsp;</h2>
 <br>
-      
-      <button class="btn btn-primary" [routerLink]="['/patientsNoConsult30']">View</button>
+      <button class="btn btn-primary" (click)="seePatients30()">View</button>
+      <!-- <button class="btn btn-primary" [routerLink]="['/patientsNoConsult30']">View</button> -->
+
+      <h3>PATIENTS</h3>
+          <table class="table ">
+
+            <thead>
+              <th>Id</th>
+              <th>Patient's FullName</th>
+              <th>Email Address</th>
+             
+           </thead>
+            <tbody>
+              <tr *ngFor="let data of patient30">
+
+                <td>{{data.id}}</td>
+                <td>{{data.fullName}}</td>
+                <td>{{data.email}}</td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
       <br> <br>
 
 

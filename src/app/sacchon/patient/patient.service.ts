@@ -5,6 +5,7 @@ import { ApiResult } from 'src/app/api-result';
 import { PatientsData } from 'src/app/patients-data';
 import { MeasurementData } from 'src/app/measurement-data';
 import { AvgMeasurement } from 'src/app/avg-measurement';
+import { Consultations } from 'src/app/consultations';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,11 @@ getAVG(id : number, from : Date, to:Date ):Observable<ApiResult<AvgMeasurement[]
   {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})})
 }
 
+
+getMyConsultations(myId : number): Observable<ApiResult<Consultations[]>> {
+  return this.http.get<ApiResult<Consultations[]>>('http://localhost:9000/v1/patient/'+ myId +'/consultation',
+  {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
+}
 
 
 }

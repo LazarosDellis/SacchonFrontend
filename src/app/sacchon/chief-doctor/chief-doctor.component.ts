@@ -19,7 +19,7 @@ export class ChiefDoctorComponent implements OnInit {
   patientsNoActivity: PatientsData[];
   doctors: DoctorsData[];
   doctorsNoActivity:DoctorsData[];
-
+  patient30: PatientsData[];
   patientsWithNoActivityForm: FormGroup;
   doctorsWithNoActivityForm: FormGroup;
 
@@ -81,6 +81,11 @@ export class ChiefDoctorComponent implements OnInit {
 
 
 
-
+  seePatients30(){
+    this.chiefDoctorService.getPatientsNoConsulta30().subscribe(result => {
+      console.log(result)
+      this.patient30 = result.data
+    })
+  }
 
 }

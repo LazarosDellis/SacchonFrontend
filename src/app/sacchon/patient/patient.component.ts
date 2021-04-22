@@ -14,20 +14,27 @@ import { AvgMeasurement } from 'src/app/avg-measurement';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
-  
+
   insertInfo: boolean = false;
   avgOfMeasurements: FormGroup;
   patientform: FormGroup;
-  data : any
+  data: any
+
+
+  consultsOfAPatient: Consultations[]
   //displayPatientForm:FormGroup;
   measurementId: number = 1;
-  person : PatientsData[];
-   id : number;
-  measurementsAVG : AvgMeasurement
-   avgData: any 
-  constructor(private patientService:PatientService, 
-              private fb:FormBuilder,
-              private route: ActivatedRoute) { }
+  person: PatientsData[];
+  id: number;
+  measurementsAVG: AvgMeasurement
+
+  avgData: any
+
+
+
+  constructor(private patientService: PatientService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { }
 
   // insertData(){
   //   this.insertInfo = !this.insertInfo;
@@ -35,33 +42,30 @@ export class PatientComponent implements OnInit {
   //  }
 
 
- 
-
   ngOnInit(): void {
-
-    
-    
 
     this.route.params.subscribe(p => {
       this.id = p.idPatient
-     // console.log(this.bugId)
+      // console.log(this.bugId)
       if (this.id) {
         this.seePersonalData(this.id);
       }
-    })       
+    })
     //this.seePersonalData()
 
     this.patientform = this.fb.group({
       typeOfMeasurement: ["", Validators.required],
       valueOfMeasurement: ["", Validators.required],
       date: ["", Validators.required],
-      patientId: ["",Validators.required] 
+      patientId: ["", Validators.required]
       //doctorId: ["", Validators.required]
     })
-   
 
-  } 
-  seePersonalData(id: number){
+
+
+
+  }
+  seePersonalData(id: number) {
     this.patientService.getPatientData(id).subscribe(result => {
       this.data = result
       console.log(this.data)
@@ -69,22 +73,33 @@ export class PatientComponent implements OnInit {
   }
 
 
-  onSumbit(){
+  onSumbit() {
     let newData: MeasurementData = this.patientform.value;
     console.log(newData)
 
-    this.patientService.postData(this.measurementId, newData).subscribe(result =>{
+    this.patientService.postData(this.measurementId, newData).subscribe(result => {
       console.log(result)
-      
+
     })
   }
 
 
-  seeAvg(id: number, fromDate: Date, toDate: Date){
-    this.patientService.getAVG(id, fromDate, toDate).subscribe(result =>{
+  seeAvg(id: number, fromDate: Date, toDate: Date) {
+    this.patientService.getAVG(id, fromDate, toDate).subscribe(result => {
       this.avgData = result
       console.log(this.avgData)
     })
   }
+
+
+  seeMyConsultations(){
+   let myId = 13;
+
+    this.patientService.getMyConsultations(myId).subscribe(result =>{
+      this.consultsOfAPatient = result.data
+      console.log(result)
+    })
+  }
+
 
 }

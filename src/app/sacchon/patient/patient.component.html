@@ -19,7 +19,7 @@
         <td>{{data.userName}}</td>
         <td>{{data.password}}</td>
         <td>{{data.email}}</td>
-        <td>{{data.doctorId}}</td>
+        <!-- <td>{{data.doctorId}}</td> -->
 
 
 
@@ -32,9 +32,7 @@
   </div>
 
 
-  <!-- <button *ngIf="!insertInfo" type="button" class="btn btn-primary" id="insert" (click)="insertData()">+</button>
-  <button *ngIf="insertInfo" type="button" class="btn btn-primary"  id="insert" (click)="insertData()"><i class="fa fa-close"></i>Close</button>
- -->
+  
 
 
 
@@ -74,7 +72,7 @@
 
     <div class="form-group">
       <label class="label">Patient Id</label>
-      <input formControlName="patientId" type="text" class="form-control"   id="patientId">
+      <input formControlName="patientId" type="text" class="form-control" id="patientId">
       <div *ngIf="patientform.get('patientId').errors?.required && patientform.get('patientId').dirty"
         class="text-danger">
         Field is required
@@ -83,7 +81,7 @@
 
     <div>
       <button type="submit" class="btn btn-primary" [disabled]="!patientform.valid">Submit</button>
-  </div>
+    </div>
 
 
   </form>
@@ -93,52 +91,115 @@
 
 
 
-    <form [formGroup]="avgOfMeasurements">
-        <div class="form-group input-group">
-            <label >Insert your id:</label>
-            <input formControlName="id"  name="" placeholder="Your id" type="text" #idPatient><br><br>
-        </div>
+  <form [formGroup]="avgOfMeasurements">
+    <div class="form-group input-group">
+      <label>Insert your id:</label>
+      <input formControlName="id" name="" placeholder="Your id" type="text" #idPatient><br><br>
+    </div>
 
 
-        <div class="form-group input-group">
-            <label for="start">From:</label>
-            <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01" max="2025-12-31" #fromDate>
+    <div class="form-group input-group">
+      <label for="start">From:</label>
+      <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01"
+        max="2025-12-31" #fromDate>
 
-            <label for="start">To:</label>
-            <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2085-12-31" #toDate>
-        </div>
+      <label for="start">To:</label>
+      <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+        max="2085-12-31" #toDate>
+    </div>
 
 
-        <button type="submit" class="btn btn-primary" (click)="seeAvg(idPatient.value, fromDate.value, toDate.value)">Check</button>
-    </form>
+    <button type="submit" class="btn btn-primary"
+      (click)="seeAvg(idPatient.value, fromDate.value, toDate.value)">Check</button>
+  </form>
 
-    
 
-    <h4>More details</h4>
-    <table class="table table-bordered">   
-    
-      <thead>
-        <th>Average of measurements</th>
-        <th>Units of measurement</th>
-      </thead>
-      <tbody>
+
+  <h4>More details</h4>
+  <table class="table table-bordered">
+
+    <thead>
+      <th>Average of measurements</th>
+      <th>Units of measurement</th>
+    </thead>
+    <tbody>
       <tr *ngFor="let measurement of measurementsAVG">
-    
-       
+
+
         <td>{{avgData.measurement}}</td>
-        <td>Carbs 
+        <td>Carbs
           Glucose
         </td>
-        
-      
-        
-        
-        
-        
-      </tr> 
-    
+      </tr>
+
     </tbody>
-    
-    </table> 
+
+  </table>
+
+
+  <button type="submit" class="btn btn-primary" (click)="seeMyConsultations()">Check
+    Consultations</button>
+
+<h4>Consultations</h4>
+  <table class="table table-bordered">
+
+    <thead>
+      <th>Id</th>
+      <th>Consultation</th>
+      <th>Date</th>
+      <th>Doctor id</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consultation of consultsOfAPatient">
+
+
+        <td>{{consultation.id}}</td>
+        <td>{{consultation.consult}}</td>
+        <td>{{consultation.date | date:"dd/MM/yyyy" }}</td>
+        <td>{{consultation.doctorId}}</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h4>Measurements</h4>
+  <table class="table table-bordered">
+
+    <thead>
+      <th>Id</th>
+      <th>Value of Measurement</th>
+      <th>Type of Measurement</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consultation of consultsOfAPatient">
+
+
+        <td>{{consultation.id}}</td>
+        <td>{{consultation.consult}}</td>
+        <td>{{consultation.date | date:"dd/MM/yyyy" }}</td>
+        <td>{{consultation.doctorId}}</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+
+
+
+
+  <!-- "id": 17,
+  "date": 1609452000000,
+  "valueOfMeasurement": 1.0,
+  "typeOfMeasurement": "carbs",
+  "patientId": 13, -->
+
 
 
