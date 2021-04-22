@@ -1,16 +1,40 @@
-label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
+// label {
+//     display: block;
+//     font: 1rem 'Fira Sans', sans-serif;
+// }
+
+// input,
+// label {
+//     margin: .4rem 0;
+// }
+
+
+// .container {
+//     /* remember to set a width */
+//     margin-right: auto;
+//     margin-left: auto;
+// }
+
+
+
+.form-bg .header{
+    //background: #b9f0ff;
+    padding: 30px 25px;
+    font-size: 30px;
+    color: rgb(10, 10, 10);
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 3px 3px 0 0;
 }
 
-input,
-label {
-    margin: .4rem 0;
+#tableDiv{
+    margin:auto;
+    max-width: 70%;
 }
 
-
-.container {
-    /* remember to set a width */
-    margin-right: auto;
-    margin-left: auto;
+.form-bg{
+    margin:auto;
+    max-width: 70%;
+    border-style: groove;
+    border-color: lightgrey;
 }

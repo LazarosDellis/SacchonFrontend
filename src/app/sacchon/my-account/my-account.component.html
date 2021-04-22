@@ -7,27 +7,16 @@
 
 
 
-
+<br><br>
 
 <div class="container">
-
-
-
-
 
 
     <div class="card">
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Log in</h4>
 
-            <p>
-                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via
-                    facebook</a>
-            </p>
-            <p class="divider-text">
-                <span class="bg-light">OR</span>
-            </p>
+           
             <form [formGroup]="loginForm" (ngSubmit)="logIn()">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -54,15 +43,11 @@
               
                     <div class="form-group">
                         <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                        <input  type="submit" name="submit" class="btn btn-info btn-md" value="Login" >
+                        <input  type="submit" name="submit" class="btn btn-primary btn-block" value="Login" >
                     </div>
                 <p class="text-center">Don't you have an account? <button type="button" class="btn btn-outline-primary"(click)="getToRegistration()">Register here</button> </p>
             </form>
         </article>
-    </div> <!-- card.// -->
-
+</div> <!-- card.// -->
+<br> <br>
 </div>
-
-                            
-                
-           
