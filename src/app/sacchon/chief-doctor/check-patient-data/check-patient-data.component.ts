@@ -30,17 +30,24 @@ export class CheckPatientDataComponent implements OnInit {
   } 
 
 
-  searchPatientData(idPatient,  fromDate, toDate){
+  // searchPatientData(idPatient,  fromDate, toDate){
    
-    this.chiefDoctorService.getMeasurementsOfAPatient(idPatient.value ,fromDate.value, toDate.value).subscribe(result => 
+  //   this.chiefDoctorService.getMeasurementsOfAPatient(idPatient.value ,fromDate.value, toDate.value).subscribe(result => 
+  //     {
+  //       this.measurements = result.data
+  //       //console.log(this.measurements)
+  //     })
+    
+  //} 
+
+  onSubmit(){
+    let dataPatientForm = this.displayDataOfPatientForm.value
+    this.chiefDoctorService.getMeasurementsOfAPatient(dataPatientForm).subscribe(result => 
       {
         this.measurements = result.data
         //console.log(this.measurements)
       })
-    
-  } 
-
-
+  }
   
 
 }

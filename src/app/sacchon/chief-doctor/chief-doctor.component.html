@@ -102,8 +102,9 @@
 <br>
       <button class="btn btn-primary" (click)="seePatients30()">View</button>
       <!-- <button class="btn btn-primary" [routerLink]="['/patientsNoConsult30']">View</button> -->
-
-      <h3>PATIENTS</h3>
+      <br> <br>
+      <div class="row">
+        <div class="column">
           <table class="table ">
 
             <thead>
@@ -125,6 +126,8 @@
 
           </table>
       <br> <br>
+</div>
+</div>
 
 
     </section>
@@ -169,7 +172,7 @@
                   <td>{{patient.id}}</td>
                   <td>{{patient.fullName}}</td>
                   <td>{{patient.email}}</td>
-                  <td>{{patient.doctorId}}</td>
+                  <!-- <td>{{patient.doctorId}}</td> -->
                 </tr>
 
               </tbody>

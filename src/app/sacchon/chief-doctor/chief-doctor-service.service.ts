@@ -25,8 +25,10 @@ export class ChiefDoctorServiceService {
     {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 
-  getMeasurementsOfAPatient(idPatient: number ,fromDate :Date, toDate: Date):Observable<ApiResult<MeasurementData[]>>{
-    return this.http.get<ApiResult<MeasurementData[]>>('http://localhost:9000/v1/measurement/patient/' + idPatient + '/dateFrom/' + fromDate + '/dateTo/' + toDate,
+  getMeasurementsOfAPatient(dataPatientForm):Observable<ApiResult<MeasurementData[]>>{
+
+    console.log(dataPatientForm)
+    return this.http.get<ApiResult<MeasurementData[]>>('http://localhost:9000/v1/measurement/patient/' + dataPatientForm.id + '/dateFrom/' + dataPatientForm.startDate + '/dateTo/' + dataPatientForm.EndDate,
     {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})}
     );
   }

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy{
     this.subscription = this.loginRegistrationService.responseOfAuth.subscribe(data => {
       this.isLogged = data;
     })
-    this.isLogged= true;
+   // this.isLogged= true;
 
   }
  

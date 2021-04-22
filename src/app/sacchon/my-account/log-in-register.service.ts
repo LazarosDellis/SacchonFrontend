@@ -1,3 +1,4 @@
+import { AccountInfo } from 'src/app/account-info';
 import { UserType } from './../../user-type';
 import { Login } from './../../login';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -13,6 +14,12 @@ export class LogInRegisterService {
   params = new HttpParams();
 
   responseOfAuth =  new Subject<boolean>();
+
+
+  logged(){
+    this.responseOfAuth.next(true);
+  }
+
 
   constructor(private http:HttpClient) { }
 
@@ -30,6 +37,9 @@ export class LogInRegisterService {
   }
 
 
-
+  createAccount(newAccount:AccountInfo): Observable<AccountInfo>{
+    console.log(newAccount)
+    return this.http.post<AccountInfo>(' http://localhost:9000/v1/registerPatient', newAccount );
+  }
   
 }

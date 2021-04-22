@@ -46,7 +46,7 @@ export class ChiefDoctorComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    
     this.seeAllDoctors();
 
     this.seeAllPatients();

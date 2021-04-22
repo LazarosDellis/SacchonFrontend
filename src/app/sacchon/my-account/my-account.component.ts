@@ -34,12 +34,13 @@ export class MyAccountComponent implements OnInit {
     let username: string;
     let password: string;
     // let logIn: Login = this.loginForm.value;
-    let responseString = this.loginRegister.authentication(this.loginForm.value).subscribe(data => {
+    this.loginRegister.authentication(this.loginForm.value).subscribe(data => {
       this.userType = data;
       if (this.userType.role == 1) {
         let idPatient =    this.userType.id
         username = this.loginForm.get('username').value;
         password = this.loginForm.get('password').value;
+        this.loginRegister.logged();
         sessionStorage.setItem("credentials", username + ":" + password);
         this.router.navigate(['/patient', idPatient])
       }
@@ -47,6 +48,7 @@ export class MyAccountComponent implements OnInit {
         let idDoctor = this.userType.id
         username = this.loginForm.get('username').value;
         password = this.loginForm.get('password').value;
+        this.loginRegister.logged();
         sessionStorage.setItem("credentials", username + ":" + password);
         this.router.navigate(['/doctor', idDoctor])
       }
@@ -54,10 +56,11 @@ export class MyAccountComponent implements OnInit {
         let idChiefDoctor = this.userType.id
         username = this.loginForm.get('username').value;
         password = this.loginForm.get('password').value;
+        this.loginRegister.logged();
         sessionStorage.setItem("credentials", username + ":" + password);
         this.router.navigate(['/chiefDoctor', idChiefDoctor])
       }
-
+      
       else {
 
         alert("Invalid Username or Password");
