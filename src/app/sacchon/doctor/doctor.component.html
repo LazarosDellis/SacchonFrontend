@@ -116,7 +116,7 @@
             <td *ngIf="measurement.typeOfMeasurement == 'carbs' ">gram</td>
             <td *ngIf="measurement.typeOfMeasurement != 'carbs' ">mg/dL</td>
             <td>{{measurement.date | date:"dd/MM/yyyy"}}</td>
-            <td class="btn btn-primary" (click)="updateConsultation()"></td>
+            
 
 
 
@@ -135,6 +135,7 @@
           <th>Id</th>
           <th>Consultation</th>
           <th>Date</th>
+          <th></th>
 
 
         </thead>
@@ -144,6 +145,7 @@
             <td>{{consults.id}}</td>
             <td>{{consults.consult}}</td>
             <td>{{consults.date | date:"dd/MM/yyyy"}}</td>
+            <td class="btn btn-primary" (click)="updateConsultation()">Modify</td>
           </tr>
 
         </tbody>

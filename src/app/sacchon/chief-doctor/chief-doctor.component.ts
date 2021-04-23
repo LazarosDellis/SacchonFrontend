@@ -71,8 +71,9 @@ export class ChiefDoctorComponent implements OnInit {
     })
   }
 
-  doctorsWithNoActivity(fromDate, toDate){
-    this.chiefDoctorService.getDoctorsWithNoActivity(fromDate.value, toDate.value)
+  doctorsWithNoActivity(frDate, tDate){
+   // let doctorsNoAct = this.doctorsWithNoActivityForm.value
+    this.chiefDoctorService.getDoctorsWithNoActivity(frDate.value, tDate.value)
     .subscribe(result =>{ 
       this.doctorsNoActivity = result.data
     })

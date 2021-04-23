@@ -36,7 +36,7 @@
               <th>Id</th>
               <th>Patient's FullName</th>
               <th>Email Address</th>
-              <th>DoctorId</th>
+              <!-- <th>DoctorId</th> -->
               <th>More Info</th>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                 <td>{{data.id}}</td>
                 <td>{{data.fullName}}</td>
                 <td>{{data.email}}</td>
-                <td>{{data.doctorId}}</td>
+                <!-- <td>{{data.doctorId}}</td> -->
 
                 <td><button class="btn btn-primary" [routerLink]="['/checkDataPatient']">More Patient's Info</button>
                 </td>
@@ -164,7 +164,7 @@
                 <th>Id</th>
                 <th>Patient's FullName</th>
                 <th>Email Address</th>
-                <th>DoctorId</th>
+                <!-- <th>DoctorId</th> -->
               </thead>
               <tbody>
                 <tr *ngFor="let patient of patientsNoActivity">
@@ -189,20 +189,20 @@
     <section id="dActivuty" class="tab-panel">
       <h2>View doctors with no activity</h2> <br>
 
-      <form [formGroup]="doctorsWithNoActivityForm">
+      <form [formGroup]="doctorsWithNoActivityForm" >
 
 
         <div class="form-group input-group">
           <label for="start">From:&nbsp;</label>
           <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22"
-            min="2000-01-01" max="2025-12-31" #fromDate>
+            min="2000-01-01" max="2025-12-31" #frDate>
 
           <label for="start">&nbsp; &nbsp;To:&nbsp;</label>
           <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
-            max="2085-12-31" #toDate>
+            max="2085-12-31" #tDate>
         </div>
 <br>
-        <button class="btn btn-primary" type="submit" (click)="doctorsWithNoActivity(fromDate, toDate)">View
+        <button class="btn btn-primary" type="submit"  (click)="doctorsWithNoActivity(frDate, tDate)">View
           </button>
 
       </form>

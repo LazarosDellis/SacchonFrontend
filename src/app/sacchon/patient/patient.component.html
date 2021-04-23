@@ -1,6 +1,35 @@
-<div class="row">
-  <div class="column">
-    <h4>Personal details</h4>
+<div class="tabset">
+
+  <!-- Tab 1 -->
+  <input type="radio" name="tabset" id="tab1" aria-controls="personal" checked>
+  <label for="tab1">Personal details</label>
+  <!-- Tab 2 -->
+  <input type="radio" name="tabset" id="tab2" aria-controls="measurements">
+  <label for="tab2">Today's measurements</label>
+  <!-- Tab 3 -->
+  <input type="radio" name="tabset" id="tab3" aria-controls="avg">
+  <label for="tab3">Average measurements</label>
+  <!-- Tab 4 -->
+  <input type="radio" name="tabset" id="tab4" aria-controls="mc">
+  <label for="tab4">Consultations & measurements</label>
+
+
+
+
+
+
+
+
+<!--     1                        -->
+
+<div class="tab-panels">
+    
+  <div id="personal" class="tab-panel">
+    
+     
+
+  
+    <h3>Personal details</h3>
     <table class="table ">
 
       <thead>
@@ -31,8 +60,13 @@
 
   </div>
 
-
+<!-- 2    measurements      -->
+<div id="measurements" class="tab-panel" >
+       
   
+  <h3>Insert measurements</h3> 
+  <br>
+  <div class="table" id="smallTable">
 
 
 
@@ -44,6 +78,7 @@
     <div class="form-group mr-2">
       <label class="label">Type of measurement:</label>
       <select formControlName="typeOfMeasurement" class="form-control" id="reporterInput" placeholder="Select">
+        
         <option>glucose</option>
         <option>carbs</option>
       </select>
@@ -62,11 +97,11 @@
     </div>
 
     <div class="form-group mr-2">
-      <h3>Date</h3>
+      <label class="label">Date</label>
 
       <input class="form-control" type="text" id="date" formControlName="date" class="form-control" type="text"
-        id="date" formControlName="date" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
-        max="2018-12-31">
+        id="date" formControlName="date" type="date" id="start" name="trip-start" value="" min="2000-01-01"
+        max="2028-12-31">
     </div>
 
 
@@ -86,25 +121,32 @@
 
   </form>
 
+</div>
+</div>
 
+<!-- 3 avg -->
+<div id="avg" class="tab-panel">
+    
+     
 
-
-
-
+  
+   
+  <h3>Check the average of your measurements</h3>
+<br>
   <form [formGroup]="avgOfMeasurements">
     <div class="form-group input-group">
-      <label>Insert your id:</label>
+      <label>Insert your id: &nbsp;</label>
       <input formControlName="id" name="" placeholder="Your id" type="text" #idPatient><br><br>
     </div>
 
 
     <div class="form-group input-group">
-      <label for="start">From:</label>
-      <input formControlName="startDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2000-01-01"
+      <label for="start">From:&nbsp;</label>
+      <input formControlName="startDate" type="date" id="start" name="trip-start" value="" min="2000-01-01"
         max="2025-12-31" #fromDate>
 
-      <label for="start">To:</label>
-      <input formControlName="endDate" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+      <label for="start">&nbsp;To:&nbsp;</label>
+      <input formControlName="endDate" type="date" id="start" name="trip-start" value="" min="2018-01-01"
         max="2085-12-31" #toDate>
     </div>
 
@@ -114,13 +156,13 @@
   </form>
 
 
-
+<br> <br>
   <h4>More details</h4>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="small2">
 
     <thead>
       <th>Average of measurements</th>
-      <th>Units of measurement</th>
+      <th>Unit of measurement</th>
     </thead>
     <tbody>
       <tr *ngFor="let measurement of measurementsAVG">
@@ -135,14 +177,24 @@
     </tbody>
 
   </table>
+</div>
+<!--4 -->
+<div id="mc" class="tab-panel" id="doubleTable">
+       <br>
+  <h3>View consultations & measurements</h3>
+
+<br>
+  <button type="submit" class="btn btn-primary" (click)="seeMyConsultations()">View</button>
+<br> <br>
 
 
-  <button type="submit" class="btn btn-primary" (click)="seeMyConsultations()">Check
-    Consultations</button>
+<div class="row" >
+  
+    
+<!-- <h4>Consultations</h4> -->
+  <table class="table-responsive col-md-6">
 
-<h4>Consultations</h4>
-  <table class="table table-bordered">
-
+ 
     <thead>
       <th>Id</th>
       <th>Consultation</th>
@@ -166,14 +218,16 @@
 
 
 
-  <h4>Measurements</h4>
-  <table class="table table-bordered">
 
+  <!-- <h4>Measurements</h4> -->
+  <table class="table-responsive col-md-6">
+
+  
     <thead>
       <th>Id</th>
       <th>Value of Measurement</th>
       <th>Type of Measurement</th>
-      <th></th>
+      <!-- <th></th> -->
     </thead>
     <tbody>
       <tr *ngFor="let consultation of consultsOfAPatient">
@@ -182,24 +236,59 @@
         <td>{{consultation.id}}</td>
         <td>{{consultation.consult}}</td>
         <td>{{consultation.date | date:"dd/MM/yyyy" }}</td>
-        <td>{{consultation.doctorId}}</td>
+        <!-- <td>{{consultation.doctorId}}</td> -->
 
       </tr>
 
     </tbody>
 
   </table>
-
-
-
-
-
+ </div> 
 
   <!-- "id": 17,
   "date": 1609452000000,
   "valueOfMeasurement": 1.0,
   "typeOfMeasurement": "carbs",
   "patientId": 13, -->
+ 
+ 
+ 
+ 
+ <button *ngIf="!insertInfo" type="button" class="btn btn-primary" id="insert" (click)="insertData()">+</button>
+  <button *ngIf="insertInfo" type="button" class="btn btn-primary"  id="insert" (click)="insertData()"><i class="fa fa-close"></i>Close</button>
 
 
 
+
+<form [formGroup]="patientform" *ngIf="insertInfo" >
+
+    
+    
+    
+    <div class="form-group mr-2">
+        <h3>Measurement</h3>
+        <input class="form-control" type="text" id="glycoseMeasurement" formControlName="glycoseMeasurement">
+
+
+    </div>
+
+    <div class="form-group mr-2">
+        <h3>CarbsMeasurement</h3>
+        <input class="form-control" type="text" id="CarbsMeasurement" formControlName="carbsMeasurement">
+
+
+    </div>
+
+    <div class="form-group mr-2">
+        <h3>Date</h3>
+        <input class="form-control" type="text" id="date" formControlName="date">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="submitPatientData()">Submit</button>
+   
+  
+</form>
+
+</div>
+</div> <!--panels-->
+</div>

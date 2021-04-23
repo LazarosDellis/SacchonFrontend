@@ -50,8 +50,9 @@ export class ChiefDoctorServiceService {
     );
   }
 
-  getDoctorsWithNoActivity(fromDate :Date, toDate: Date):Observable<ApiResult<DoctorsData[]>>{
-    return this.http.get<ApiResult<DoctorsData[]>>(' http://localhost:9000/v1/doctor/consultation/dateFrom/' + fromDate + '/dateTo/' + toDate,
+  getDoctorsWithNoActivity(frDate: Date, tDate: Date):Observable<ApiResult<DoctorsData[]>>{
+    console.log(frDate, tDate)
+    return this.http.get<ApiResult<DoctorsData[]>>(' http://localhost:9000/v1/doctor/consultation/dateFrom/' + frDate + '/dateTo/' + tDate,
     {headers:new HttpHeaders({'Authorization': 'Basic ' + btoa(sessionStorage.getItem("credentials"))})});
   }
 }

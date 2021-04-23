@@ -27,7 +27,7 @@ export class CheckDoctorDataComponent implements OnInit {
 
 
   searchDoctorData(idDoctor, fromDate, toDate){
-    this.chiefDoctorService.getConsultationsOfADoctor(idDoctor.value, fromDate.value, toDate.value)
+    this.chiefDoctorService.getConsultationsOfADoctor(idDoctor, fromDate, toDate)
     .subscribe(result => {
       this.consultations = result.data
     })
